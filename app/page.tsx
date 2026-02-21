@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import dynamic from 'next/dynamic'
 import { callAIAgent } from '@/lib/aiAgent'
 import type { AIAgentResponse } from '@/lib/aiAgent'
 import { Button } from '@/components/ui/button'
@@ -1444,21 +1443,4 @@ function CRMAutoSyncApp() {
   )
 }
 
-// ──────────────────────────────────────────────
-// Dynamic export — prevents SSR useContext errors
-// from Radix UI components (Tooltip, ScrollArea, etc.)
-// ──────────────────────────────────────────────
-function LoadingFallback() {
-  return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'hsl(160, 30%, 4%)', color: 'hsl(160, 15%, 60%)' }}>
-      <div style={{ textAlign: 'center' }}>
-        <p style={{ fontSize: '14px' }}>Loading CRM AutoSync...</p>
-      </div>
-    </div>
-  )
-}
-
-export default dynamic(() => Promise.resolve(CRMAutoSyncApp), {
-  ssr: false,
-  loading: () => <LoadingFallback />,
-})
+export default CRMAutoSyncApp

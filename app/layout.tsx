@@ -1,18 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
-import nextDynamic from 'next/dynamic'
 import './globals.css'
 import { IframeLoggerInit } from '@/components/IframeLoggerInit'
-
-// Dynamically import client-only providers to prevent SSR useContext errors
-const ErrorBoundary = nextDynamic(() => import('@/components/ErrorBoundary'), { ssr: false })
-const AgentInterceptorProvider = nextDynamic(
-  () => import('@/components/AgentInterceptorProvider').then(mod => ({ default: mod.AgentInterceptorProvider })),
-  { ssr: false }
-)
+import ErrorBoundary from '@/components/ErrorBoundary'
+import { AgentInterceptorProvider } from '@/components/AgentInterceptorProvider'
 
 const inter = Inter({ subsets: ['latin'] })
+
+// Force dynamic rendering to prevent SSR useContext errors during static generation
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'CRM AutoSync',
