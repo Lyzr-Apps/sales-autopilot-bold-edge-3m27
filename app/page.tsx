@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import { callAIAgent, AIAgentResponse } from '@/lib/aiAgent'
+import dynamic from 'next/dynamic'
+import { callAIAgent } from '@/lib/aiAgent'
+import type { AIAgentResponse } from '@/lib/aiAgent'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -276,7 +278,7 @@ function statusBadgeClasses(status: string): string {
   }
 }
 
-function renderMarkdown(text: string) {
+function renderMarkdown(text: string): React.ReactNode {
   if (!text) return null
   return (
     <div className="space-y-2">
@@ -293,10 +295,10 @@ function renderMarkdown(text: string) {
   )
 }
 
-function formatInline(text: string) {
+function formatInline(text: string): React.ReactNode {
   const parts = text.split(/\*\*(.*?)\*\*/g)
   if (parts.length === 1) return text
-  return parts.map((part, i) => i % 2 === 1 ? <strong key={i} className="font-semibold">{part}</strong> : part)
+  return parts.map((part, i) => i % 2 === 1 ? <strong key={i} className="font-semibold">{part}</strong> : <React.Fragment key={i}>{part}</React.Fragment>)
 }
 
 // ──────────────────────────────────────────────
@@ -480,7 +482,7 @@ function EntryDetailDialog({ entry }: { entry: CRMEntry }) {
 // ──────────────────────────────────────────────
 // Main Page Component
 // ──────────────────────────────────────────────
-export default function Page() {
+function CRMAutoSyncApp() {
   // Navigation
   const [activeScreen, setActiveScreen] = useState<ScreenType>('dashboard')
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
@@ -1441,3 +1443,22 @@ export default function Page() {
     </ErrorBoundary>
   )
 }
+
+// ──────────────────────────────────────────────
+// Dynamic export — prevents SSR useContext errors
+// from Radix UI components (Tooltip, ScrollArea, etc.)
+// ──────────────────────────────────────────────
+function LoadingFallback() {
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'hsl(160, 30%, 4%)', color: 'hsl(160, 15%, 60%)' }}>
+      <div style={{ textAlign: 'center' }}>
+        <p style={{ fontSize: '14px' }}>Loading CRM AutoSync...</p>
+      </div>
+    </div>
+  )
+}
+
+export default dynamic(() => Promise.resolve(CRMAutoSyncApp), {
+  ssr: false,
+  loading: () => <LoadingFallback />,
+})

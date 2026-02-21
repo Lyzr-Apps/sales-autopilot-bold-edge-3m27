@@ -1,16 +1,22 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
+import nextDynamic from 'next/dynamic'
 import './globals.css'
 import { IframeLoggerInit } from '@/components/IframeLoggerInit'
-import ErrorBoundary from '@/components/ErrorBoundary'
-import { AgentInterceptorProvider } from '@/components/AgentInterceptorProvider'
+
+// Dynamically import client-only providers to prevent SSR useContext errors
+const ErrorBoundary = nextDynamic(() => import('@/components/ErrorBoundary'), { ssr: false })
+const AgentInterceptorProvider = nextDynamic(
+  () => import('@/components/AgentInterceptorProvider').then(mod => ({ default: mod.AgentInterceptorProvider })),
+  { ssr: false }
+)
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Next.js App',
-  description: 'Built with Next.js, React, and Tailwind CSS',
+  title: 'CRM AutoSync',
+  description: 'Automated CRM Data Entry from Gmail - Built with Architect by Lyzr',
   icons: {
     icon: '/lyzr.png',
   },
