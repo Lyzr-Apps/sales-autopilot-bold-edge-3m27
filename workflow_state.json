@@ -1,0 +1,102 @@
+{
+  "app_name": "CRM AutoSync",
+  "agents": {
+    "manager_agent": {
+      "agent_id": "69995e60a4f57aa46126cb9f",
+      "name": "CRM Sync Coordinator",
+      "type": "manager",
+      "model": "gpt-4.1",
+      "provider": "openai",
+      "temperature": 0.2,
+      "managed_agents": [
+        "69995e49938bc0103dbe0c39",
+        "69995e38ceed43b6522c4550",
+        "69995e38c066ed107671ab82"
+      ],
+      "tools": [],
+      "capabilities": {
+        "image_output": false,
+        "voice": false,
+        "file_output": false
+      }
+    },
+    "email_fetcher_agent": {
+      "agent_id": "69995e49938bc0103dbe0c39",
+      "name": "Email Fetcher Agent",
+      "type": "sub-agent",
+      "model": "gpt-4.1",
+      "provider": "openai",
+      "temperature": 0.1,
+      "managed_by": "69995e60a4f57aa46126cb9f",
+      "tools": [
+        {
+          "tool_name": "gmail",
+          "tool_source": "composio",
+          "actions": ["GMAIL_FETCH_EMAILS"]
+        }
+      ],
+      "capabilities": {
+        "image_output": false,
+        "voice": false,
+        "file_output": false
+      }
+    },
+    "data_extraction_agent": {
+      "agent_id": "69995e38ceed43b6522c4550",
+      "name": "Data Extraction Agent",
+      "type": "sub-agent",
+      "model": "gpt-4.1",
+      "provider": "openai",
+      "temperature": 0.2,
+      "managed_by": "69995e60a4f57aa46126cb9f",
+      "tools": [],
+      "capabilities": {
+        "image_output": false,
+        "voice": false,
+        "file_output": false
+      }
+    },
+    "validation_agent": {
+      "agent_id": "69995e38c066ed107671ab82",
+      "name": "Validation Agent",
+      "type": "sub-agent",
+      "model": "gpt-4.1",
+      "provider": "openai",
+      "temperature": 0.1,
+      "managed_by": "69995e60a4f57aa46126cb9f",
+      "tools": [],
+      "capabilities": {
+        "image_output": false,
+        "voice": false,
+        "file_output": false
+      }
+    },
+    "crm_entry_agent": {
+      "agent_id": "69995e7372a2e3b0eaab96c7",
+      "name": "CRM Entry Agent",
+      "type": "independent",
+      "model": "gpt-4.1",
+      "provider": "openai",
+      "temperature": 0.1,
+      "tools": [
+        {
+          "tool_name": "hubspot",
+          "tool_source": "composio",
+          "actions": ["HUBSPOT_CREATE_CONTACT", "HUBSPOT_CREATE_DEAL", "HUBSPOT_CREATE_ASSOCIATION_FOR_OBJECT_TYPE"]
+        }
+      ],
+      "capabilities": {
+        "image_output": false,
+        "voice": false,
+        "file_output": false
+      }
+    }
+  },
+  "agent_ids": [
+    "69995e60a4f57aa46126cb9f",
+    "69995e49938bc0103dbe0c39",
+    "69995e38ceed43b6522c4550",
+    "69995e38c066ed107671ab82",
+    "69995e7372a2e3b0eaab96c7"
+  ]
+}

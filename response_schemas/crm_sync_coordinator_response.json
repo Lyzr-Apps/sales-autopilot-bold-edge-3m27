@@ -1,0 +1,70 @@
+{
+  "agent_name": "CRM Sync Coordinator",
+  "agent_id": "69995e60a4f57aa46126cb9f",
+  "description": "Coordinates the email parsing pipeline \u2014 routes fetched emails to extraction and validation sub-agents, aggregates structured CRM-ready output for user review",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "validated_entries": [
+      {
+        "contact_name": "string",
+        "contact_email": "string",
+        "company": "string",
+        "job_title": "string",
+        "deal_name": "string",
+        "deal_value": "string",
+        "deal_stage": "string",
+        "next_steps": "string",
+        "confidence_score": "number",
+        "validation_status": "string",
+        "validation_issues": [
+          "string"
+        ],
+        "is_duplicate": "boolean",
+        "source_email_subject": "string"
+      }
+    ],
+    "summary": {
+      "total_emails_processed": "number",
+      "total_entries": "number",
+      "validated_count": "number",
+      "flagged_count": "number",
+      "incomplete_count": "number",
+      "duplicate_count": "number",
+      "average_confidence": "number"
+    },
+    "pipeline_status": "string"
+  },
+  "example_response": {
+    "validated_entries": [
+      {
+        "contact_name": "sample string",
+        "contact_email": "sample string",
+        "company": "sample string",
+        "job_title": "sample string",
+        "deal_name": "sample string",
+        "deal_value": "sample string",
+        "deal_stage": "sample string",
+        "next_steps": "sample string",
+        "confidence_score": 0,
+        "validation_status": "sample string",
+        "validation_issues": [
+          "sample string"
+        ],
+        "is_duplicate": false,
+        "source_email_subject": "sample string"
+      }
+    ],
+    "summary": {
+      "total_emails_processed": 0,
+      "total_entries": 0,
+      "validated_count": 0,
+      "flagged_count": 0,
+      "incomplete_count": 0,
+      "duplicate_count": 0,
+      "average_confidence": 0
+    },
+    "pipeline_status": "sample string"
+  }
+}

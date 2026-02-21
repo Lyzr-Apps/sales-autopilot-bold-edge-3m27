@@ -1,0 +1,48 @@
+{
+  "agent_name": "CRM Entry Agent",
+  "agent_id": "69995e7372a2e3b0eaab96c7",
+  "description": "Creates validated contacts and deals in HubSpot after user approval \u2014 handles contact creation, deal creation, and association between them",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "results": [
+      {
+        "contact_name": "string",
+        "contact_email": "string",
+        "company": "string",
+        "deal_name": "string",
+        "status": "string",
+        "hubspot_contact_id": "string",
+        "hubspot_deal_id": "string",
+        "error_message": "string"
+      }
+    ],
+    "summary": {
+      "total_processed": "number",
+      "successful": "number",
+      "failed": "number"
+    },
+    "status": "string"
+  },
+  "example_response": {
+    "results": [
+      {
+        "contact_name": "sample string",
+        "contact_email": "sample string",
+        "company": "sample string",
+        "deal_name": "sample string",
+        "status": "sample string",
+        "hubspot_contact_id": "sample string",
+        "hubspot_deal_id": "sample string",
+        "error_message": "sample string"
+      }
+    ],
+    "summary": {
+      "total_processed": 0,
+      "successful": 0,
+      "failed": 0
+    },
+    "status": "sample string"
+  }
+}

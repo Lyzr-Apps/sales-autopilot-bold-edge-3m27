@@ -1,0 +1,36 @@
+{
+  "agent_name": "Email Fetcher Agent",
+  "agent_id": "69995e49938bc0103dbe0c39",
+  "description": "Fetches recent emails from Gmail using search filters (e.g., from prospects, containing deal keywords) and passes raw email content to the manager",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "emails": [
+      {
+        "sender_name": "string",
+        "sender_email": "string",
+        "subject": "string",
+        "body": "string",
+        "date_received": "string",
+        "thread_id": "string"
+      }
+    ],
+    "total_fetched": "number",
+    "status": "string"
+  },
+  "example_response": {
+    "emails": [
+      {
+        "sender_name": "Jane Smith",
+        "sender_email": "jane@acmecorp.com",
+        "subject": "Re: Enterprise License Proposal",
+        "body": "Hi, we are interested in the enterprise plan for 50 seats...",
+        "date_received": "2026-02-20T14:30:00Z",
+        "thread_id": "thread_abc123"
+      }
+    ],
+    "total_fetched": 1,
+    "status": "success"
+  }
+}

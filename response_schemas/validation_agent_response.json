@@ -1,0 +1,64 @@
+{
+  "agent_name": "Validation Agent",
+  "agent_id": "69995e38c066ed107671ab82",
+  "description": "Validates extracted data for completeness (required fields present), format correctness (email format, currency values), deduplication flags, and confidence scoring",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "validated_entries": [
+      {
+        "contact_name": "string",
+        "contact_email": "string",
+        "company": "string",
+        "job_title": "string",
+        "deal_name": "string",
+        "deal_value": "string",
+        "deal_stage": "string",
+        "next_steps": "string",
+        "confidence_score": "number",
+        "validation_status": "string",
+        "validation_issues": ["string"],
+        "is_duplicate": "boolean",
+        "source_email_subject": "string"
+      }
+    ],
+    "summary": {
+      "total_entries": "number",
+      "validated_count": "number",
+      "flagged_count": "number",
+      "incomplete_count": "number",
+      "duplicate_count": "number",
+      "average_confidence": "number"
+    },
+    "status": "string"
+  },
+  "example_response": {
+    "validated_entries": [
+      {
+        "contact_name": "Jane Smith",
+        "contact_email": "jane@acmecorp.com",
+        "company": "Acme Corp",
+        "job_title": "VP of Engineering",
+        "deal_name": "Acme Corp Enterprise License",
+        "deal_value": "50000",
+        "deal_stage": "Proposal",
+        "next_steps": "Schedule demo call next week",
+        "confidence_score": 95,
+        "validation_status": "validated",
+        "validation_issues": [],
+        "is_duplicate": false,
+        "source_email_subject": "Re: Enterprise License Proposal"
+      }
+    ],
+    "summary": {
+      "total_entries": 1,
+      "validated_count": 1,
+      "flagged_count": 0,
+      "incomplete_count": 0,
+      "duplicate_count": 0,
+      "average_confidence": 95
+    },
+    "status": "success"
+  }
+}

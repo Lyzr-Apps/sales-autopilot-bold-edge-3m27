@@ -1,0 +1,42 @@
+{
+  "agent_name": "Data Extraction Agent",
+  "agent_id": "69995e38ceed43b6522c4550",
+  "description": "Parses email content to extract structured fields: contact name, email, company, job title, deal name, deal value, stage, and any mentioned next steps",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "entries": [
+      {
+        "source_email_subject": "string",
+        "contact_name": "string",
+        "contact_email": "string",
+        "company": "string",
+        "job_title": "string",
+        "deal_name": "string",
+        "deal_value": "string",
+        "deal_stage": "string",
+        "next_steps": "string"
+      }
+    ],
+    "total_entries": "number",
+    "status": "string"
+  },
+  "example_response": {
+    "entries": [
+      {
+        "source_email_subject": "Re: Enterprise License Proposal",
+        "contact_name": "Jane Smith",
+        "contact_email": "jane@acmecorp.com",
+        "company": "Acme Corp",
+        "job_title": "VP of Engineering",
+        "deal_name": "Acme Corp Enterprise License",
+        "deal_value": "50000",
+        "deal_stage": "Proposal",
+        "next_steps": "Schedule demo call next week"
+      }
+    ],
+    "total_entries": 1,
+    "status": "success"
+  }
+}

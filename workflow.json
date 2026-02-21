@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "User Input",
+      "nodeCategory": "input"
+    },
+    {
+      "id": "manager_agent",
+      "type": "Agent",
+      "label": "CRM Sync Coordinator",
+      "nodeCategory": "agent",
+      "agent_id": "69995e60a4f57aa46126cb9f"
+    },
+    {
+      "id": "email_fetcher_agent",
+      "type": "Agent",
+      "label": "Email Fetcher Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69995e49938bc0103dbe0c39"
+    },
+    {
+      "id": "data_extraction_agent",
+      "type": "Agent",
+      "label": "Data Extraction Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69995e38ceed43b6522c4550"
+    },
+    {
+      "id": "validation_agent",
+      "type": "Agent",
+      "label": "Validation Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69995e38c066ed107671ab82"
+    },
+    {
+      "id": "crm_entry_agent",
+      "type": "Agent",
+      "label": "CRM Entry Agent",
+      "nodeCategory": "agent",
+      "agent_id": "69995e7372a2e3b0eaab96c7"
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "CRM Output",
+      "nodeCategory": "end"
+    }
+  ],
+  "edges": [
+    { "source": "input_node", "target": "manager_agent" },
+    { "source": "manager_agent", "target": "email_fetcher_agent" },
+    { "source": "manager_agent", "target": "data_extraction_agent" },
+    { "source": "manager_agent", "target": "validation_agent" },
+    { "source": "manager_agent", "target": "crm_entry_agent" },
+    { "source": "crm_entry_agent", "target": "output_node" }
+  ]
+}
